@@ -12,7 +12,7 @@ public class Shipment {
     private final Ship ship;
     private final LocalDate departureDate;
     private final List<Cargo> cargo = new ArrayList<>();
-    private double total;
+    private double totalValue;
     private String status = "CREATED";
 
     public Shipment(String reference, Customer customer, Planet origin, Planet destination, Ship ship, LocalDate departureDate) {
@@ -32,8 +32,31 @@ public class Shipment {
     public Ship getShip() { return ship; }
     public LocalDate getDepartureDate() { return departureDate; }
     public List<Cargo> getCargo() { return cargo; }
-    public double getTotal() { return total; }
-    public void setTotal(double total) { this.total = total; }
+    public double getTotal() { return totalValue; }
+    public void setTotal(double totalValue) { this.totalValue = totalValue; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public double getTotalWeight() {
+        double totalWeight = 0;
+        for (Cargo item : cargo) {
+            totalWeight += item.getWeight();
+        }
+        return totalWeight;
+    }
+
+    public double getTotalDeclaredValue() {
+        double totalValue = 0;
+        for (Cargo item : cargo) {
+            totalValue += item.getDeclaredValue();
+        }
+        return totalValue;
+    }
+
+    public boolean hasHazardousCargo() {
+        for (Cargo item : cargo) {
+            if (item.isHazardous()) return true;
+        }
+        return false;
+    }
 }
