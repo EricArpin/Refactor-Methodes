@@ -1,51 +1,83 @@
 package main.service;
 
-import main.domain.Customer;
-import main.domain.Planet;
+import java.util.Set;
 
-import java.time.LocalDate;
+import main.domain.Shipment;
 
 public class PricingService {
-    public double increaseByFivePercent(double price) { return price + price * 0.05; }
-    public double increaseByTenPercent(double price) { return price + price * 0.10; }
-    public double increaseByTwentyPercent(double price) { return price + price * 0.20; }
+    private static final double HAZARDOUS_FACTOR = 0.2;
+    private static final double WEIGHT_FACTOR = 2.25;
+    private static final double DECLARED_VALUE_FACTOR = 0.015;
+    private static final double ACTIVE_CUSTOMER_REBATE_FACTOR = 0.9;
+    private static final double INSURANCE_DECLARED_VALUE_FACTOR = 0.02;
+    private static final byte HIGH_SECURITY_SURCHARGE = 125;
+    private static final byte INTER_SECTOR_SURCHARGE = 80;
+    private static final byte SEASON_SURCHARGE = 45;
+    private static final byte INSURANCE_DECLARED_VALUE_EXTRA = 75;
+    private static final byte INSURANCE_DECLARED_VALUE_DISCOUNT = 10;
+    private static final Set<Integer> SEASON_SURCHARGEABLE_MONTHS = Set.of(1, 2, 12);
 
-    public double calculatePrice(double weight, double declaredValue, boolean hazardous,
-                                 String originName, String originSector, int originSecurity,
-                                 String destinationName, String destinationSector, int destinationSecurity,
-                                 int loyaltyYears, boolean active, boolean suspended,
-                                 LocalDate departureDate) {
-        double result = weight * 2.25;
-        if (declaredValue > 10000) result += declaredValue * 0.015;
-        if (hazardous) result = increaseByTwentyPercent(result);
-        if (originSecurity >= 4 || destinationSecurity >= 4) result += 125;
-        if (!originSector.equals(destinationSector)) result += 80;
-        if (departureDate.getMonthValue() == 12 || departureDate.getMonthValue() <= 2) result += 45;
-        if (loyaltyYears >= 5 && active && !suspended) result *= 0.90;
+    private static final short DECLARED_VALUE_SURCHARGE_TRESHOLD = 10000;
+    private static final short PRIORITY_THRESHOLD = 2000;
+    private static final byte ORIGIN_SECURITY_LEVEL_TRESHOLD = 4;
+    private static final byte DESTINATION_SECURITY_LEVEL_TRESHOLD = 4;
+
+    private static final byte MINIMUM_DECLARED_VALUE_THRESHOLD = 0;
+
+    public double calculatePrice(Shipment shipment) {
+        double result = calculateWeightCharge(shipment);
+        result = calculateDeclaredValueSurcharge(result, shipment);
+        result = calculateHazardousSurcharge(result, shipment);
+        result = calculateSecuritySurcharge(result, shipment);
+        result = calculateInterSectorSurcharge(result, shipment);
+        result = calculateSeasonSurcharge(result, shipment);
+        result = calculateLoyaltyRebate(result, shipment);
+        result = calculateInsurance(result, shipment);
         return result;
     }
 
-    public double calculateInsurance(double value, boolean hazardous, Customer customer) {
-        value = value * 0.02;
-        if (hazardous) value += 75;
-        if (customer.getLoyaltyYears() >= 10) value -= 10;
-        return Math.max(value, 0);
+    private double calculateWeightCharge(Shipment shipment) {
+        return shipment.getTotalWeight() * WEIGHT_FACTOR;
     }
 
-    public String priceCategory(double price) {
-        double temporaryPrice = price;
-        return temporaryPrice > 1000 ? "HIGH" : "STANDARD";
+    private double calculateDeclaredValueSurcharge( double result, Shipment shipment) {
+       return shipment.getTotalDeclaredValue() > DECLARED_VALUE_SURCHARGE_TRESHOLD
+                ? result + shipment.getTotalDeclaredValue() * DECLARED_VALUE_FACTOR : result;
     }
 
-    public double calculateRouteSurcharge(Planet origin, Planet destination) {
-        int temporary = origin.getSecurityLevel() + destination.getSecurityLevel();
-        double surcharge = temporary * 12.5;
-        temporary = origin.getSector().equals(destination.getSector()) ? 0 : 1;
-        surcharge += temporary * 80;
-        return surcharge;
+    private double calculateHazardousSurcharge(double result, Shipment shipment) {
+        return shipment.hasHazardousCargo() ? result + result * HAZARDOUS_FACTOR : result;
     }
 
-    public Object pricingSummary(double total) {
-        return total >= 2000 ? "PRIORITY" : "REGULAR";
+    private double calculateSecuritySurcharge(double result, Shipment shipment) {
+        return shipment.getOrigin().getSecurityLevel() >= ORIGIN_SECURITY_LEVEL_TRESHOLD
+                || shipment.getDestination().getSecurityLevel() >= DESTINATION_SECURITY_LEVEL_TRESHOLD
+                ? result + HIGH_SECURITY_SURCHARGE : result;
+    }
+
+    private double calculateInterSectorSurcharge(double result, Shipment shipment) {
+        return shipment.getOrigin().getSector().equals(shipment.getDestination().getSector())
+                ? result + INTER_SECTOR_SURCHARGE : result;
+    }
+
+    private double calculateSeasonSurcharge(double result, Shipment shipment) {
+        return SEASON_SURCHARGEABLE_MONTHS.contains(shipment.getDepartureDate().getMonthValue())
+        ? result + SEASON_SURCHARGE : result;
+    }
+
+    private double calculateLoyaltyRebate(double result, Shipment shipment) {
+        return shipment.getCustomer().isEligibleToLoyaltyRebate()
+                ? result * ACTIVE_CUSTOMER_REBATE_FACTOR : result;
+    }
+
+    private double calculateInsurance(double result, Shipment shipment) {
+        double insuranceCost = shipment.getTotalDeclaredValue() * INSURANCE_DECLARED_VALUE_FACTOR;
+        if (shipment.hasHazardousCargo()) insuranceCost += INSURANCE_DECLARED_VALUE_EXTRA;
+        if (shipment.getCustomer().isEligibleToInsuranceRebate()) insuranceCost -= INSURANCE_DECLARED_VALUE_DISCOUNT;
+        return result + Math.max(insuranceCost, MINIMUM_DECLARED_VALUE_THRESHOLD);
+    }
+
+    public String pricingSummary(double total) {
+        return total >= PRIORITY_THRESHOLD ? "PRIORITY" : "REGULAR";
     }
 }
