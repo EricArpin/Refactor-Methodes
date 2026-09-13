@@ -1,6 +1,11 @@
 package main.domain;
 
+import main.service.PricingService;
+
 public class Customer {
+    public static final byte LOYALTY_YEARS_THRESHOLD_FOR_LOYALTY_REBATE = 5;
+    private static final byte LOYALTY_YEARS_THRESHOLD_FOR_CALCULATE_INSURANCE = 10;
+
     private int id;
     private String name;
     private int loyaltyYears;
@@ -25,4 +30,10 @@ public class Customer {
     public boolean isSuspended() { return suspended; }
     public double getAccountBalance() { return accountBalance; }
     public void setAccountBalance(double accountBalance) { this.accountBalance = accountBalance; }
+    public boolean isEligibleToLoyaltyRebate() {
+        return loyaltyYears >= LOYALTY_YEARS_THRESHOLD_FOR_LOYALTY_REBATE && isActive() && !isSuspended();
+    }
+    public boolean isEligibleToInsuranceRebate() {
+        return loyaltyYears >= LOYALTY_YEARS_THRESHOLD_FOR_CALCULATE_INSURANCE;
+    }
 }
