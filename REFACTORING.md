@@ -16,5 +16,5 @@ Shipment/Ajout de 3 methodes/La validation et l'obtention d'infos directement de
 Shipment/Retrait de lignes de codes et var inutulises
 Costumer/ Ajout de 2 methodes de validation et des const necessaires.? Assure le traitement dans la bonne classe vs pricingService
 Main/ Simplification autour du System.out.println(service.validateCalculatePrintSaveAndNotify(shipment)) qui faisait trop de choses dans le meme titre. Adaptation aux modifs apportees a Shipment
-
+|Main | Trop complexe comme point d'entree | Creation de ShipmentDemoRunner qui active tout ce que main faisait et creation de l'appel a la nouvelle classe dans Main
 [app](src/main/app)
