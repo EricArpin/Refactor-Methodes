@@ -18,4 +18,5 @@ Costumer/ Ajout de 2 methodes de validation et des const necessaires.? Assure le
 Main/ Simplification autour du System.out.println(service.validateCalculatePrintSaveAndNotify(shipment)) qui faisait trop de choses dans le meme titre. Adaptation aux modifs apportees a Shipment
 |Main | Trop complexe comme point d'entree | Creation de ShipmentDemoRunner qui active tout ce que main faisait et creation de l'appel a la nouvelle classe dans Main
 |Customer/getId + setId| Inutilises| Retire 2 methodes| Alleger code
+|Shipment/validateShipment| Messages d'erreurs non-recuperes (possiblement pour fonctionnalites futures aver const [ajoutees par moi])| Retrait des const et messages erreurs | Bouts de codes inutilises peuvent etre confondants. ex je pense qu'ils sont utilises qq part.
 [app](src/main/app)

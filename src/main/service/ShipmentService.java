@@ -2,11 +2,9 @@ package main.service;
 
 import main.domain.Shipment;
 
+import javax.print.DocFlavor;
+
 public class ShipmentService {
-    private static final String ERROR_CUSTOMER = "ERROR_CUSTOMER";
-    private static final String ERROR_EMPTY = "ERROR_EMPTY";
-    private static final String ERROR_CAPACITY = "ERROR_CAPACITY";
-    private static final String ERROR_PERMISSION = "ERROR_PERMISSION";
 
     private final PricingService pricingService;
     private final PermissionService permissionService;
@@ -29,13 +27,13 @@ public class ShipmentService {
         return setCategory(total, shipment);
     }
 
-    private String validateShipment(Shipment shipment) {
-        if (!shipment.getCustomer().isActive()) return ERROR_CUSTOMER;
-        if (shipment.getCustomer().isSuspended()) return ERROR_CUSTOMER;
-        if (shipment.getCargo().isEmpty()) return ERROR_EMPTY;
-        if (shipment.getTotalWeight() > shipment.getShip().getCapacity()) return ERROR_CAPACITY;
+    private void validateShipment(Shipment shipment) {
+        if (!shipment.getCustomer().isActive()) return;
+        if (shipment.getCustomer().isSuspended()) return;
+        if (shipment.getCargo().isEmpty()) return;
+        if (shipment.getTotalWeight() > shipment.getShip().getCapacity()) return;
         if (shipment.hasHazardousCargo() && !permissionService.canCarryHazardous(shipment.getShip()))
-        return ERROR_PERMISSION;
+        return;
     }
 
     private void setShipment(double total, Shipment shipment) {
