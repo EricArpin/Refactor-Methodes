@@ -41,3 +41,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Permission | const CROSS_RESTRICTED_SECTOR | rendue inutilisee | retrait
 |RiskService| classe inutilisee | retrait
 |ScheduleService| classe inutilisee | retrait
+|Customer/getLoyaltyYaers+getAccountBalance+setAccountBalance| 3 methodes inutilisees suite a retrait de classes inutilisees | retrait

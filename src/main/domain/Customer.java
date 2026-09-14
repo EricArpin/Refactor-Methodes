@@ -19,11 +19,8 @@ public class Customer {
     }
 
     public String getName() { return name; }
-    public int getLoyaltyYears() { return loyaltyYears; }
     public boolean isActive() { return active; }
     public boolean isSuspended() { return suspended; }
-    public double getAccountBalance() { return accountBalance; }
-    public void setAccountBalance(double accountBalance) { this.accountBalance = accountBalance; }
     public boolean isEligibleToLoyaltyRebate() {
         return loyaltyYears >= LOYALTY_YEARS_THRESHOLD_FOR_LOYALTY_REBATE && isActive() && !isSuspended();
     }
