@@ -36,3 +36,6 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Ship/getRegistration+getModel| 2 methodes inutilisees | retrait
 |InsuficientFundsException| Classe inutilisee | Retrait
 |AccountService| Classe inutilisee | retrait
+|ManifestRepositery/count| Methode inutilisee | Retrait
+|PermissionService| 3 methodes inutilisees | retrait
+|Permission | const CROSS_RESTRICTED_SECTOR | rendue inutilisee | retrait
