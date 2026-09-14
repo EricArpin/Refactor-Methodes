@@ -42,3 +42,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |RiskService| classe inutilisee | retrait
 |ScheduleService| classe inutilisee | retrait
 |Customer/getLoyaltyYaers+getAccountBalance+setAccountBalance| 3 methodes inutilisees suite a retrait de classes inutilisees | retrait
+|Ship / setPermission | methode inutilisee suite a retrait de classes inutilisees | retrait

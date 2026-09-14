@@ -15,5 +15,4 @@ public class Ship {
 
     public double getCapacity() { return capacity; }
     public int getPermissions() { return permissions; }
-    public void setPermissions(int permissions) { this.permissions = permissions; }
 }
