@@ -39,3 +39,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ManifestRepositery/count| Methode inutilisee | Retrait
 |PermissionService| 3 methodes inutilisees | retrait
 |Permission | const CROSS_RESTRICTED_SECTOR | rendue inutilisee | retrait
+|RiskService| classe inutilisee | retrait
