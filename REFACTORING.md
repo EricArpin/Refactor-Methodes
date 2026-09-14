@@ -35,3 +35,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Planet/getName| methode inutilisee | retrait
 |Ship/getRegistration+getModel| 2 methodes inutilisees | retrait
 |InsuficientFundsException| Classe inutilisee | Retrait
+|AccountService| Classe inutilisee | retrait
