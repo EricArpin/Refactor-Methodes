@@ -1,9 +1,6 @@
 package main.service;
 
-import main.domain.Ship;
 import main.domain.Shipment;
-
-import javax.print.DocFlavor;
 
 public class ShipmentService {
 
