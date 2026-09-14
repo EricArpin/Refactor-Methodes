@@ -30,3 +30,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentDemoRunning| Place ds mauvais dossier | Replacer ds dossier App | logique
 |Shipment| var totalValue titre pas assez clair et coherent | modif pour totalDeclaredValue | clarte
 |Shipment/getTotal/getStatus | methodes inutilisees | retrait
+|Shipment/setTotal| nom incoherent avec nouveau nom de variable| Modifie pour setTotalDeclaredValue | coherence

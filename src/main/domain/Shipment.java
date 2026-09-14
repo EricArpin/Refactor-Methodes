@@ -32,7 +32,7 @@ public class Shipment {
     public Ship getShip() { return ship; }
     public LocalDate getDepartureDate() { return departureDate; }
     public List<Cargo> getCargo() { return cargo; }
-    public void setTotal(double totalValue) { this.totalDeclaredValue = totalValue; }
+    public void setTotalDeclaredValue(double totalValue) { this.totalDeclaredValue = totalValue; }
     public void setStatus(String status) { this.status = status; }
 
     public double getTotalWeight() {

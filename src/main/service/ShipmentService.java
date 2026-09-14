@@ -35,7 +35,7 @@ public class ShipmentService {
     }
 
     private void setShipment(double total, Shipment shipment) {
-        shipment.setTotal(total);
+        shipment.setTotalDeclaredValue(total);
         shipment.setStatus("READY");
     }
 
