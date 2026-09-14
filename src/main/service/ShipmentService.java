@@ -1,5 +1,6 @@
 package main.service;
 
+import main.domain.Ship;
 import main.domain.Shipment;
 
 import javax.print.DocFlavor;
@@ -24,7 +25,7 @@ public class ShipmentService {
         double total = pricingService.calculatePrice(shipment);
         setShipment(total, shipment);
         repository.save(shipment);
-        return setCategory(total, shipment);
+        return getConfirmationMessage(total, shipment);
     }
 
     private boolean isValidShipment(Shipment shipment) {
@@ -41,10 +42,13 @@ public class ShipmentService {
         shipment.setStatus("READY");
     }
 
-    private String setCategory(double total, Shipment shipment) {
-        String category = pricingService.pricingSummary(total);
-        return category + " | " + shipment.getReference() + " | " + String.format("%.2f", total)
+    private String getConfirmationMessage(double total, Shipment shipment) {
+        return setCategory(total) + " | " + shipment.getReference() + " | " + String.format("%.2f", total)
                 + " | " + notificationService.confirmationFor(shipment);
+    }
+
+    private String setCategory(double total) {
+        return pricingService.pricingSummary(total);
     }
 
 }

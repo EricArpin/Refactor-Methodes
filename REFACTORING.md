@@ -21,4 +21,5 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentService/validateShipment| Messages d'erreurs non-recuperes (possiblement pour fonctionnalites futures aver const [ajoutees par moi])| Retrait des const et messages erreurs | Bouts de codes inutilises peuvent etre confondants. ex je pense qu'ils sont utilises qq part.
 |ShipmentService/validateShipment | Ne retourne plus de string (car elle remplace les if qui retournaient une String) | change de nom pour isValidShipment, return null si neg, ajustement des returns et transformee en Boolean.
 |ShipmentDemoRunner/run| absence de println(bug) |ajout String confirmationMessage pour applyShipment et de println| Sinon programme ne fonctionne plus
+|Shipment Service/ApplyShipment vs setCategory| Methode faisait 2 choses - set category et build de message de confirnmation.| Creation de getConfirmationMessage appelant setCategory| Plus clair
 [app](src/main/app)
