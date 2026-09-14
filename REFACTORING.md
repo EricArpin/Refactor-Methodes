@@ -25,4 +25,5 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Customer| import inutilise | retrait
 |Customer| var id jamais appelee | retrait complet
 |ShipmentDemoRunner/builSampleShipment| var id demande en argument mais retire de Customer | Creait un bug vue l'incoherenece des arguments
+|ShipmentDemoRunner| import inutilise | retrait
 [app](src/main/app)
