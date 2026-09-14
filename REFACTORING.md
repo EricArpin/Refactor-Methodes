@@ -22,4 +22,5 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentService/validateShipment | Ne retourne plus de string (car elle remplace les if qui retournaient une String) | change de nom pour isValidShipment, return null si neg, ajustement des returns et transformee en Boolean.
 |ShipmentDemoRunner/run| absence de println(bug) |ajout String confirmationMessage pour applyShipment et de println| Sinon programme ne fonctionne plus
 |Shipment Service/ApplyShipment vs setCategory| Methode faisait 2 choses - set category et build de message de confirnmation.| Creation de getConfirmationMessage appelant setCategory| Plus clair
+|Customer| import inutilise | retrait
 [app](src/main/app)
