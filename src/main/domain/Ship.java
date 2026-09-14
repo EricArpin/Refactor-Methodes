@@ -13,8 +13,6 @@ public class Ship {
         this.permissions = permissions;
     }
 
-    public String getRegistration() { return registration; }
-    public String getModel() { return model; }
     public double getCapacity() { return capacity; }
     public int getPermissions() { return permissions; }
     public void setPermissions(int permissions) { this.permissions = permissions; }
