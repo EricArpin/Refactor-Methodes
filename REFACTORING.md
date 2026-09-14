@@ -40,3 +40,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |PermissionService| 3 methodes inutilisees | retrait
 |Permission | const CROSS_RESTRICTED_SECTOR | rendue inutilisee | retrait
 |RiskService| classe inutilisee | retrait
+|ScheduleService| classe inutilisee | retrait
