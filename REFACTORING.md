@@ -23,4 +23,6 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentDemoRunner/run| absence de println(bug) |ajout String confirmationMessage pour applyShipment et de println| Sinon programme ne fonctionne plus
 |Shipment Service/ApplyShipment vs setCategory| Methode faisait 2 choses - set category et build de message de confirnmation.| Creation de getConfirmationMessage appelant setCategory| Plus clair
 |Customer| import inutilise | retrait
+|Customer| var id jamais appelee | retrait complet
+|ShipmentDemoRunner/builSampleShipment| var id demande en argument mais retire de Customer | Creait un bug vue l'incoherenece des arguments
 [app](src/main/app)

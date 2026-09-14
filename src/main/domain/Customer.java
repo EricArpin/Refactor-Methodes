@@ -4,15 +4,13 @@ public class Customer {
     public static final byte LOYALTY_YEARS_THRESHOLD_FOR_LOYALTY_REBATE = 5;
     private static final byte LOYALTY_YEARS_THRESHOLD_FOR_CALCULATE_INSURANCE = 10;
 
-    private int id;
     private String name;
     private int loyaltyYears;
     private boolean active;
     private boolean suspended;
     private double accountBalance;
 
-    public Customer(int id, String name, int loyaltyYears, boolean active, boolean suspended, double accountBalance) {
-        this.id = id;
+    public Customer(String name, int loyaltyYears, boolean active, boolean suspended, double accountBalance) {
         this.name = name;
         this.loyaltyYears = loyaltyYears;
         this.active = active;
