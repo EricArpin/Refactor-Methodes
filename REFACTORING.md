@@ -28,4 +28,5 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentDemoRunner| import inutilise | retrait|
 |ShipmentService | 2 import inutiles | retrait
 |ShipmentDemoRunning| Place ds mauvais dossier | Replacer ds dossier App | logique
+|Shipment| var totalValue titre pas assez clair et coherent | modif pour totalDeclaredValue | clarte
 [app](src/main/app)
