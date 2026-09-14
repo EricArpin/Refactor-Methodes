@@ -32,3 +32,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Shipment/getTotal/getStatus | methodes inutilisees | retrait
 |Shipment/setTotal| nom incoherent avec nouveau nom de variable| Modifie pour setTotalDeclaredValue | coherence
 |Cargo/getDescription| methode inutilisee | retrait
+|Planet/getName| methode inutilisee | retrait

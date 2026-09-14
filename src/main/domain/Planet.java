@@ -11,7 +11,6 @@ public class Planet {
         this.securityLevel = securityLevel;
     }
 
-    public String getName() { return name; }
     public String getSector() { return sector; }
     public int getSecurityLevel() { return securityLevel; }
 }
