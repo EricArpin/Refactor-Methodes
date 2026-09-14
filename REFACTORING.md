@@ -31,3 +31,4 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |Shipment| var totalValue titre pas assez clair et coherent | modif pour totalDeclaredValue | clarte
 |Shipment/getTotal/getStatus | methodes inutilisees | retrait
 |Shipment/setTotal| nom incoherent avec nouveau nom de variable| Modifie pour setTotalDeclaredValue | coherence
+|Cargo/getDescription| methode inutilisee | retrait
