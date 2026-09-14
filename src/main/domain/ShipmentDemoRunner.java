@@ -9,7 +9,8 @@ public class ShipmentDemoRunner {
     public void run() {
         Shipment shipment = buildSampleShipment();
         ShipmentService service = buildShipmentService();
-        service.applyShipment(shipment);
+        String confirmationMessage = service.applyShipment(shipment);
+        System.out.println(confirmationMessage);
     }
 
     private Shipment buildSampleShipment() {
