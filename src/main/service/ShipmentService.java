@@ -20,20 +20,20 @@ public class ShipmentService {
     }
 
     public String applyShipment(Shipment shipment) {
-        validateShipment(shipment);
+        if (!isValidShipment(shipment)) return null;
         double total = pricingService.calculatePrice(shipment);
         setShipment(total, shipment);
         repository.save(shipment);
         return setCategory(total, shipment);
     }
 
-    private void validateShipment(Shipment shipment) {
-        if (!shipment.getCustomer().isActive()) return;
-        if (shipment.getCustomer().isSuspended()) return;
-        if (shipment.getCargo().isEmpty()) return;
-        if (shipment.getTotalWeight() > shipment.getShip().getCapacity()) return;
-        if (shipment.hasHazardousCargo() && !permissionService.canCarryHazardous(shipment.getShip()))
-        return;
+    private boolean isValidShipment(Shipment shipment) {
+        if (!shipment.getCustomer().isActive()) return false;
+        if (shipment.getCustomer().isSuspended()) return false;
+        if (shipment.getCargo().isEmpty()) return false;
+        if (shipment.getTotalWeight() > shipment.getShip().getCapacity()) return false;
+        if (shipment.hasHazardousCargo() && !permissionService.canCarryHazardous(shipment.getShip())) return false;
+        return true;
     }
 
     private void setShipment(double total, Shipment shipment) {
