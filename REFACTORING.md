@@ -27,4 +27,5 @@ Main/ Simplification autour du System.out.println(service.validateCalculatePrint
 |ShipmentDemoRunner/builSampleShipment| var id demande en argument mais retire de Customer | Creait un bug vue l'incoherenece des arguments
 |ShipmentDemoRunner| import inutilise | retrait|
 |ShipmentService | 2 import inutiles | retrait
+|ShipmentDemoRunning| Place ds mauvais dossier | Replacer ds dossier App | logique
 [app](src/main/app)

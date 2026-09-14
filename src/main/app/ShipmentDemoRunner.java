@@ -1,5 +1,6 @@
-package main.domain;
+package main.app;
 
+import main.domain.*;
 import main.service.*;
 
 import java.time.LocalDate;
